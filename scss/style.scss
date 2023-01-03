@@ -102,8 +102,8 @@
 .progress-bar{
     width: 90%;
     height: 5px;
-    background: white;
-    margin: 15px;
+    background: #3D5656;
+    margin: 25px 0 10px 0;
     border-radius: 10px;
     cursor: pointer;
 
@@ -112,7 +112,7 @@
 
 .progress{
     height: 100%;
-    width: 50%;
+    width: 0%;
     background-color: #645CAA;
     border-radius: inherit;
     z-index: 3;

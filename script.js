@@ -57,7 +57,7 @@ const nextBtnHandler = () => {
   }
 };
 
-const prevBtnHandler = () => {
+const prevBtnHandler = (event) => {
   songIndex--;
   if (songIndex < 0) songIndex = songTitles.length - 1;
   loadSong(songIndex);
@@ -68,6 +68,19 @@ const prevBtnHandler = () => {
   }
 };
 
+const progressBarUpdateHandler = (event) => {
+  const progressPercent = (audio.currentTime / audio.duration) * 100;
+  progress.style.width = `${progressPercent}%`;
+};
+
+const progressBarClickHandler = (event) => {
+  const totalWidth = progressBar.clientWidth; //width of progress bar
+  const fromLeft = progressBar.getBoundingClientRect().x; // progressbar distance from viewport left
+
+  const currentWidth = event.clientX - fromLeft;
+  audio.currentTime = (currentWidth * audio.duration) / totalWidth; // comparing the ratios
+};
+
 // event listeners
 
 playBtn.addEventListener("click", playBtnHandler);
@@ -75,3 +88,9 @@ playBtn.addEventListener("click", playBtnHandler);
 nextBtn.addEventListener("click", nextBtnHandler);
 
 prevBtn.addEventListener("click", prevBtnHandler);
+
+audio.addEventListener("timeupdate", progressBarUpdateHandler);
+
+progressBar.addEventListener("click", progressBarClickHandler);
+
+audio.addEventListener("ended", nextBtnHandler);

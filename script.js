@@ -51,6 +51,10 @@ const nextBtnHandler = () => {
   if (songIndex > songTitles.length - 1) songIndex = 0;
   loadSong(songIndex);
   audio.play();
+  if (!player.classList.contains("play")) {
+    player.classList.add("play");
+    playing = true;
+  }
 };
 
 const prevBtnHandler = () => {
@@ -58,6 +62,10 @@ const prevBtnHandler = () => {
   if (songIndex < 0) songIndex = songTitles.length - 1;
   loadSong(songIndex);
   audio.play();
+  if (!player.classList.contains("play")) {
+    player.classList.add("play");
+    playing = true;
+  }
 };
 
 // event listeners
@@ -65,3 +73,5 @@ const prevBtnHandler = () => {
 playBtn.addEventListener("click", playBtnHandler);
 
 nextBtn.addEventListener("click", nextBtnHandler);
+
+prevBtn.addEventListener("click", prevBtnHandler);
